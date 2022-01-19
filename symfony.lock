@@ -2,6 +2,12 @@
     "doctrine/instantiator": {
         "version": "1.4.0"
     },
+    "hamcrest/hamcrest-php": {
+        "version": "v2.0.1"
+    },
+    "mockery/mockery": {
+        "version": "1.4.4"
+    },
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
