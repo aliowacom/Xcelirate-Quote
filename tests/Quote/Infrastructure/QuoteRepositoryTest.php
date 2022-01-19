@@ -30,6 +30,7 @@ trait QuoteRepositoryTest
 
         $quotes = $this->repository->findByAuthor($author, $amount);
 
+        $this->assertGreaterThan(0, count($quotes));
         foreach($quotes as $quote) {
             $this->assertEquals($quote->author()->value(), 'Steve Jobs');
         }
