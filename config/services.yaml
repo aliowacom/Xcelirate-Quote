@@ -6,8 +6,8 @@
 parameters:
     app.root_dir: '../src/'
     app.assets_dir: '../assets/'
-    app.quote.cache_timeout: '%env(QUOTE_CACHE_TIMEOUT)%'
-    app.quote.max_amount: '%env(QUOTE_MAX_AMOUNT)%'
+    app.quote.cache_timeout: '%env(int:QUOTE_CACHE_TIMEOUT)%'
+    app.quote.max_amount: '%env(int:QUOTE_MAX_AMOUNT)%'
 
 services:
     # default configuration for services in *this* file
