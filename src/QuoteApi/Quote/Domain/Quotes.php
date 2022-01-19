@@ -6,7 +6,7 @@ namespace XcelirateQuote\QuoteApi\Quote\Domain;
 
 use XcelirateQuote\Shared\Domain\Collection;
 
-final class Quotes extends Collection
+class Quotes extends Collection
 {
     protected function type(): string
     {
