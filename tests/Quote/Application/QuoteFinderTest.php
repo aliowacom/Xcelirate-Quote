@@ -34,7 +34,7 @@ final class QuoteFinderTest extends MockeryTestCase
     }
 
     /** @test */
-    public function test()
+    public function it_should_find_by_author()
     {
         $finder = new QuoteFinder(
             $this->repository(),
