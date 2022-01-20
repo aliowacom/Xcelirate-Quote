@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace XcelirateQuote\Tests\Quote\Infrastructure;
+namespace XcelirateQuote\Tests\Quote\Infrastructure\Mocks;
 
 use XcelirateQuote\QuoteApi\Quote\Domain\Quote;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteAuthor;
@@ -10,7 +10,7 @@ use XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository;
 use XcelirateQuote\QuoteApi\Quote\Domain\Quotes;
 use XcelirateQuote\Tests\Quote\Domain\QuoteMother;
 
-final class TestQuoteRepository implements QuoteRepository
+final class QuoteRepositoryMock implements QuoteRepository
 {
     public function findByAuthor(QuoteAuthor $author): Quotes
     {
@@ -34,6 +34,14 @@ final class TestQuoteRepository implements QuoteRepository
             QuoteMother::create(
                 'John Doe',
                 'Be smart.',
+            ),
+            QuoteMother::create(
+                'Steve Jobs',
+                'Iphone 20.',
+            ),
+            QuoteMother::create(
+                'Steve Jobs',
+                'Iphone 2022.',
             ),
         ]);
     }

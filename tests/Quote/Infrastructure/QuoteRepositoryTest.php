@@ -11,14 +11,11 @@ trait QuoteRepositoryTest
 {
     private QuoteRepository $repository;
 
-    abstract protected function getRepositoryClass(): string;
-
-    abstract protected function getRepositoryArguments(): array;
+    abstract protected function getRepository(): QuoteRepository;
 
     protected function setUp(): void
     {
-        $class = $this->getRepositoryClass();
-        $this->repository = new $class(...$this->getRepositoryArguments());
+        $this->repository = $this->getRepository();
 
         parent::setUp();
     }
