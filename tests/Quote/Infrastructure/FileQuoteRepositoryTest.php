@@ -15,4 +15,10 @@ final class FileQuoteRepositoryTest extends TestCase
     {
         return FileQuoteRepository::class;
     }
+
+    protected function getRepositoryArguments(): array
+    {
+        $path = __DIR__ . '/../../../assets/';
+        return [$path];
+    }
 }

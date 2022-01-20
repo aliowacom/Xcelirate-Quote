@@ -14,10 +14,12 @@ trait QuoteRepositoryTest
 
     abstract protected function getRepositoryClass(): string;
 
+    abstract protected function getRepositoryArguments(): array;
+
     protected function setUp(): void
     {
         $class = $this->getRepositoryClass();
-        $this->repository = new $class;
+        $this->repository = new $class(...$this->getRepositoryArguments());
 
         parent::setUp();
     }

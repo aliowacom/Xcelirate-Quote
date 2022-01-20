@@ -13,8 +13,8 @@ use XcelirateQuote\QuoteApi\Shared\Quote\Domain\QuoteAmount;
 
 final class FileQuoteRepository implements QuoteRepository
 {
-    private const FILE_PATH = __DIR__ . '/../../../../assets/';
-
+    public function __construct(private string $assetsPath) {}
+    
     private Quotes $quotes;
 
     public function findByAuthor(QuoteAuthor $author, QuoteAmount $amount): Quotes
@@ -49,6 +49,6 @@ final class FileQuoteRepository implements QuoteRepository
 
     private function fromFile(): array
     {
-        return json_decode(file_get_contents(self::FILE_PATH . 'quotes.json'), true);
+        return json_decode(file_get_contents($this->assetsPath . 'quotes.json'), true);
     }
 }
