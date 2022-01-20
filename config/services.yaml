@@ -50,5 +50,5 @@ services:
     XcelirateQuote\Shared\Application\CacheHelper $quoteCacheHelper: '@XcelirateQuote\QuoteApi\Shared\Quote\Application\QuoteCacheHelper'
 
     #QuoteComparator
-    XcelirateQuote\QuoteApi\Quote\Application\QuoteAuthorComparator: '@XcelirateQuote\QuoteApi\Quote\Application\QuoteAuthorStrictComparator'
-    #XcelirateQuote\QuoteApi\Quote\Application\QuoteAuthorComparator: '@XcelirateQuote\QuoteApi\Quote\Application\QuoteAuthorSimpleComparator'
+    XcelirateQuote\QuoteApi\Quote\Infrastructure\QuoteAuthorComparator: '@XcelirateQuote\QuoteApi\Quote\Infrastructure\QuoteAuthorStrictComparator'
+    #XcelirateQuote\QuoteApi\Quote\Infrastructure\QuoteAuthorComparator: '@XcelirateQuote\QuoteApi\Quote\Infrastructure\QuoteAuthorSimpleComparator'

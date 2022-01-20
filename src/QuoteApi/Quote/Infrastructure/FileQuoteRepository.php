@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace XcelirateQuote\QuoteApi\Quote\Infrastructure;
 
-use XcelirateQuote\QuoteApi\Quote\Application\QuoteAuthorComparator;
 use XcelirateQuote\QuoteApi\Quote\Domain\Quote;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteAuthor;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository;

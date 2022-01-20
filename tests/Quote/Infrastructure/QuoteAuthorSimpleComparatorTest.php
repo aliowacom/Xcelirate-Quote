@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace XcelirateQuote\Tests\Quote\Application;
+namespace XcelirateQuote\Tests\Quote\Infrastructure;
 
 use PHPUnit\Framework\TestCase;
-use XcelirateQuote\QuoteApi\Quote\Application\QuoteAuthorSimpleComparator;
+use XcelirateQuote\QuoteApi\Quote\Infrastructure\QuoteAuthorSimpleComparator;
 use XcelirateQuote\Tests\Quote\Domain\QuoteAuthorMother;
 
 final class QuoteAuthorSimpleComparatorTest extends TestCase
