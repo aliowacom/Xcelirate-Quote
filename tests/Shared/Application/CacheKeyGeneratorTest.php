@@ -19,13 +19,13 @@ final class CacheKeyGeneratorTest extends TestCase
     /** @test */
     public function returns_concatenated_string_separated_with_dot()
     {
-        $stringA = 'stringA';
-        $stringB = 'stringB';
-        $stringC = 'stringC';
+        $stringA = 'string1';
+        $stringB = 'string2';
+        $stringC = 'string3';
 
         $result = $this->generator->generate($stringA, $stringB, $stringC);
 
-        $this->assertEquals('stringA.stringB.stringC', $result);
+        $this->assertEquals('string1.string2.string3', $result);
     }
 
     /** @test */
@@ -36,6 +36,16 @@ final class CacheKeyGeneratorTest extends TestCase
         $result = $this->generator->generate($string);
 
         $this->assertEquals('word1_word2_word3', $result);
+    }
+
+    /** @test */
+    public function transforms_to_lower_case()
+    {
+        $string = 'sTRinG';
+
+        $result = $this->generator->generate($string);
+
+        $this->assertEquals('string', $result);
     }
 
     /** @test */

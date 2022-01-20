@@ -8,7 +8,7 @@ final class CacheKeyGenerator
 {
     public function generate(string ...$data): string
     {
-        $key = implode('.', $data);
+        $key = mb_strtolower(implode('.', $data));
 
         $key = preg_replace('/\s+/', '_', $key);
 
