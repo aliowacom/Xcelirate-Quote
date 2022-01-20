@@ -13,6 +13,9 @@ abstract class Collection implements Countable, IteratorAggregate
 {
     use CollectionActions;
     
+    /**
+     * @throws InvalidArgumentException
+     */
     public function __construct(private array $items)
     {
         $this->assertArrayOfType($items);

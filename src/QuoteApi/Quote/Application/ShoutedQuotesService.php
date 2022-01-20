@@ -16,6 +16,10 @@ final class ShoutedQuotesService
         private int $quoteMaxAmount,
     ){}
 
+    /** 
+     * @throws LogicException 
+     * @throws \Exception
+     */
     public function __invoke(string $author, int|string $quoteAmount): array
     {
         $quoteAmount = (int)$quoteAmount;
