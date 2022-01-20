@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use XcelirateQuote\QuoteApi\Quote\Application\ShoutedQuotesService;
 
-class ShoutedQuotesController
+final class ShoutedQuotesController
 {
     public function __construct(private ShoutedQuotesService $service) {}
 

@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use XcelirateQuote\QuoteApi\Quote\Application\ShoutedQuotesService;
 
-class ShoutedQuotesCommand extends Command
+final class ShoutedQuotesCommand extends Command
 {
     protected static $defaultName = 'app:shouted-quotes';
     protected static $defaultDescription = 'Retrieve SHOUTED quotes from external source';

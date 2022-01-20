@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use XcelirateQuote\QuoteApi\Quote\Application\QuoteShoutTransformer;
 use XcelirateQuote\Tests\Quote\Domain\QuoteMother;
 
-class QuoteShoutTransformerTest extends TestCase
+final class QuoteShoutTransformerTest extends TestCase
 {
     protected QuoteShoutTransformer $transformer;
 
