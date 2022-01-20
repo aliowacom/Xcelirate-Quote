@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace XcelirateQuote\QuoteApi\Quote\Infrastructure;
 
+use XcelirateQuote\QuoteApi\Quote\Application\QuoteAuthorComparator;
 use XcelirateQuote\QuoteApi\Quote\Domain\Quote;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteAuthor;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository;
@@ -12,7 +13,10 @@ use XcelirateQuote\QuoteApi\Quote\Domain\QuoteText;
 
 final class FileQuoteRepository implements QuoteRepository
 {
-    public function __construct(private string $assetsPath) {}
+    public function __construct(
+        private QuoteAuthorComparator $comparator,
+        private string $assetsPath
+    ) {}
     
     private Quotes $quotes;
 
@@ -20,7 +24,7 @@ final class FileQuoteRepository implements QuoteRepository
     {
         return $this->getQuotes()
                     ->filter(function(Quote $quote) use($author) {
-                        return mb_strtolower($quote->author()->value()) == mb_strtolower($author->value());
+                        return $this->comparator->compare($author, $quote->author());
                     });
     }
 
