@@ -30,7 +30,6 @@ final class ShoutedQuotesService
             throw new \Exception('Quote amount is greater than 10');
         }
 
-        $author = preg_replace('/[_\-]+/', ' ', $author);
         $author = new QuoteAuthor($author);
 
         $quotes = $this->finder

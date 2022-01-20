@@ -18,6 +18,7 @@ final class ShoutedQuotesController
     {
         $amount = $request->query->get('limit', 1);
         $author = $request->get('author');
+        $author = preg_replace('/[_\-]+/', ' ', $author);
 
         try{
             $quotes = $this->service->__invoke($author, $amount);
