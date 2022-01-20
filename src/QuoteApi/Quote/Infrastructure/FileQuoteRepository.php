@@ -9,7 +9,6 @@ use XcelirateQuote\QuoteApi\Quote\Domain\QuoteAuthor;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository;
 use XcelirateQuote\QuoteApi\Quote\Domain\Quotes;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteText;
-use XcelirateQuote\QuoteApi\Shared\Quote\Domain\QuoteAmount;
 
 final class FileQuoteRepository implements QuoteRepository
 {
@@ -17,13 +16,12 @@ final class FileQuoteRepository implements QuoteRepository
     
     private Quotes $quotes;
 
-    public function findByAuthor(QuoteAuthor $author, QuoteAmount $amount): Quotes
+    public function findByAuthor(QuoteAuthor $author): Quotes
     {
         return $this->getQuotes()
                     ->filter(function(Quote $quote) use($author) {
                         return mb_strtolower($quote->author()->value()) == mb_strtolower($author->value());
-                    })
-                    ->take($amount->value());
+                    });
     }
 
     private function getQuotes(): Quotes

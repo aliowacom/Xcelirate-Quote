@@ -6,7 +6,6 @@ namespace XcelirateQuote\Tests\Quote\Infrastructure;
 
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository;
 use XcelirateQuote\Tests\Quote\Domain\QuoteAuthorMother;
-use XcelirateQuote\Tests\Quote\Shared\Domain\QuoteAmountMother;
 
 trait QuoteRepositoryTest
 {
@@ -28,9 +27,8 @@ trait QuoteRepositoryTest
     public function returns_quotes_with_given_author()
     {
         $author = QuoteAuthorMother::create('Steve Jobs');
-        $amount = QuoteAmountMother::create(5);
 
-        $quotes = $this->repository->findByAuthor($author, $amount);
+        $quotes = $this->repository->findByAuthor($author);
 
         $this->assertGreaterThan(0, count($quotes));
         foreach($quotes as $quote) {
@@ -39,28 +37,11 @@ trait QuoteRepositoryTest
     }
 
     /** @test */
-    public function returns_requested_amount_of_quotes()
-    {
-        $author = QuoteAuthorMother::create('Steve Jobs');
-
-        $amount = QuoteAmountMother::create(1);
-        $quotes = $this->repository->findByAuthor($author, $amount);
-
-        $this->assertEquals(1, count($quotes));
-
-        $amount = QuoteAmountMother::create(5);
-        $quotes = $this->repository->findByAuthor($author, $amount);
-
-        $this->assertGreaterThan(1, count($quotes));
-    }
-
-    /** @test */
     public function returns_empty_collection_if_not_found()
     {
         $author = QuoteAuthorMother::create('Non-existant Author');
-        $amount = QuoteAmountMother::create(5);
 
-        $quotes = $this->repository->findByAuthor($author, $amount);
+        $quotes = $this->repository->findByAuthor($author);
 
         $this->assertCount(0, $quotes);
     }

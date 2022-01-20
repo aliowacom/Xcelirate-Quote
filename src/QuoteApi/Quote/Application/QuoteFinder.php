@@ -9,7 +9,6 @@ use Symfony\Contracts\Cache\ItemInterface;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteAuthor;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository;
 use XcelirateQuote\QuoteApi\Quote\Domain\Quotes;
-use XcelirateQuote\QuoteApi\Shared\Quote\Domain\QuoteAmount;
 use XcelirateQuote\Shared\Application\CacheKeyGenerator;
 
 final class QuoteFinder
@@ -21,17 +20,17 @@ final class QuoteFinder
         private int $quoteCacheTimeout,
     ){}
     
-    public function findByAuthor(QuoteAuthor $author, QuoteAmount $amount): Quotes
+    public function findByAuthor(QuoteAuthor $author): Quotes
     {
         $cacheKey = $this->generator->generate(
             __FUNCTION__,
             $author->value(),
         );
         
-        $quotes = $this->cache->get($cacheKey, function (ItemInterface $item) use($author, $amount) {
+        $quotes = $this->cache->get($cacheKey, function (ItemInterface $item) use($author) {
             $item->expiresAfter($this->quoteCacheTimeout);
         
-            return $this->repository->findByAuthor($author, $amount);
+            return $this->repository->findByAuthor($author);
         });
 
         return $quotes;

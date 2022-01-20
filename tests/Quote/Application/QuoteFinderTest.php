@@ -11,21 +11,21 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use XcelirateQuote\QuoteApi\Quote\Application\QuoteFinder;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteAuthor;
 use XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository;
-use XcelirateQuote\QuoteApi\Shared\Quote\Domain\QuoteAmount;
+use XcelirateQuote\QuoteApi\Quote\Domain\Quotes;
 use XcelirateQuote\Shared\Application\CacheKeyGenerator;
 use XcelirateQuote\Tests\Quote\Domain\QuoteAuthorMother;
-use XcelirateQuote\Tests\Quote\Shared\Domain\QuoteAmountMother;
 
 final class QuoteFinderTest extends MockeryTestCase
 {
     private QuoteRepository|MockInterface|null $repository;
 
-    protected function shouldFindByAuthor(QuoteAuthor $author, QuoteAmount $amount): void
+    protected function shouldFindByAuthor(QuoteAuthor $author): void
     {
         $this->repository()
             ->shouldReceive('findByAuthor')
-            ->with($author, $amount)
-            ->once();
+            ->with($author)
+            ->once()
+            ->andReturn(new Quotes([]));
     }
 
     protected function repository(): QuoteRepository|MockInterface
@@ -43,10 +43,9 @@ final class QuoteFinderTest extends MockeryTestCase
             15
         );
         $author = QuoteAuthorMother::create('author');
-        $amount = QuoteAmountMother::create(5);
 
-        $this->shouldFindByAuthor($author, $amount);
+        $this->shouldFindByAuthor($author);
 
-        $finder->findByAuthor($author, $amount);
+        $finder->findByAuthor($author);
     }
 }
