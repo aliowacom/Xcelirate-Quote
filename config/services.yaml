@@ -6,7 +6,7 @@
 parameters:
     app.root_dir: '../src/'
     app.assets_dir: '%kernel.project_dir%/assets/'
-    app.quote.cache_timeout: '%env(int:QUOTE_CACHE_TIMEOUT)%'
+    app.quote.cache_expiry_time: '%env(int:QUOTE_CACHE_EXPIRY_TIME)%'
     app.quote.max_amount: '%env(int:QUOTE_MAX_AMOUNT)%'
 
 services:
@@ -15,7 +15,7 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
         bind:
-            $quoteCacheTimeout: '%app.quote.cache_timeout%'
+            $quoteCacheExpiryTime: '%app.quote.cache_expiry_time%'
             $quoteMaxAmount: '%app.quote.max_amount%'
             $assetsPath: '%app.assets_dir%'
 
@@ -32,10 +32,17 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    XcelirateQuote\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+    
     # QuoteRepository
     XcelirateQuote\Quote\Infrastructure\FileQuoteRepository: ~
-    XcelirateQuote\Quote\Domain\QuoteRepository: '@XcelirateQuote\Quote\Infrastructure\FileQuoteRepository'
+    XcelirateQuote\Quote\Domain\QuoteRepository: '@XcelirateQuote\QuoteApi\Quote\Infrastructure\FileQuoteRepository'
 
     #QuoteTransformer
     XcelirateQuote\Quote\Application\QuoteShoutTransformer: ~
-    XcelirateQuote\Quote\Application\QuoteTransformer: '@XcelirateQuote\Quote\Application\QuoteShoutTransformer'
+    XcelirateQuote\Quote\Application\QuoteTransformer: '@XcelirateQuote\QuoteApi\Quote\Application\QuoteShoutTransformer'
+
+    #CacheHelper
+    XcelirateQuote\Shared\Application\CacheHelper $quoteCacheHelper: '@XcelirateQuote\QuoteApi\Shared\Quote\Application\QuoteCacheHelper'
