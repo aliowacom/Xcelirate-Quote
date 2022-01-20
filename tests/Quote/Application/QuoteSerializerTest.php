@@ -43,6 +43,5 @@ final class QuoteSerializerTest extends TestCase
         $result = $this->serializer->toTextArray($quotes);
 
         $this->assertCount(0, $result);
-        $this->assertCount(0, $result);
     }
 }
