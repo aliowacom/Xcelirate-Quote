@@ -12,11 +12,9 @@ final class QuoteCacheHelper implements CacheHelper
 
     public function generateKey(string ...$data): string
     {
-        $key = mb_strtolower(implode('.', $data));
+        $data = array_map(fn($string) => $this->prepareString($string), $data);
 
-        $key = preg_replace('/\s+/', '_', $key);
-
-        $key = preg_replace('/[^a-zA-Z0-9_\.]/u', '', $key);
+        $key = implode('.', $data);
 
         return $key;
     }
@@ -24,5 +22,16 @@ final class QuoteCacheHelper implements CacheHelper
     public function getExpiryTime(): int
     {
         return $this->quoteCacheExpiryTime;
+    }
+
+    private function prepareString(string $string): string
+    {
+        $string = mb_strtolower($string);
+        $string = preg_replace('/[^a-zA-Z0-9_\s]/u', '', $string);
+
+        $string = array_filter(array_unique(explode(' ', $string)));
+        sort($string);
+
+        return implode('_', $string);
     }
 }

@@ -59,6 +59,26 @@ final class QuoteCacheHelperTest extends TestCase
     }
 
     /** @test */
+    public function removes_duplicated_words()
+    {
+        $string = 'string1 string1';
+
+        $result = $this->helper->generateKey($string);
+
+        $this->assertEquals('string1', $result);
+    }
+
+    /** @test */
+    public function sorts_words_in_alphabetical_order()
+    {
+        $string = 'bravo charlie alpha';
+
+        $result = $this->helper->generateKey($string);
+
+        $this->assertEquals('alpha_bravo_charlie', $result);
+    }
+
+    /** @test */
     public function returns_correct_expiry_time()
     {
         $helper = new QuoteCacheHelper(1337);
