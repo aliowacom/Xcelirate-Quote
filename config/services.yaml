@@ -37,12 +37,12 @@ services:
         tags: ['controller.service_arguments']
     
     # QuoteRepository
-    XcelirateQuote\Quote\Infrastructure\FileQuoteRepository: ~
-    XcelirateQuote\Quote\Domain\QuoteRepository: '@XcelirateQuote\QuoteApi\Quote\Infrastructure\FileQuoteRepository'
+    # XcelirateQuote\QuoteApi\Quote\Infrastructure\FileQuoteRepository: ~
+    XcelirateQuote\QuoteApi\Quote\Domain\QuoteRepository: '@XcelirateQuote\QuoteApi\Quote\Infrastructure\FileQuoteRepository'
 
     #QuoteTransformer
-    XcelirateQuote\Quote\Application\QuoteShoutTransformer: ~
-    XcelirateQuote\Quote\Application\QuoteTransformer: '@XcelirateQuote\QuoteApi\Quote\Application\QuoteShoutTransformer'
+    XcelirateQuote\QuoteApi\Quote\Application\QuoteShoutTransformer: ~
+    XcelirateQuote\QuoteApi\Quote\Application\QuoteTransformer: '@XcelirateQuote\QuoteApi\Quote\Application\QuoteShoutTransformer'
 
     #CacheHelper
     XcelirateQuote\Shared\Application\CacheHelper $quoteCacheHelper: '@XcelirateQuote\QuoteApi\Shared\Quote\Application\QuoteCacheHelper'
