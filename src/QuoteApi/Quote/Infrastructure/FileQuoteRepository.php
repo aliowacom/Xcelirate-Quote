@@ -21,7 +21,7 @@ final class FileQuoteRepository implements QuoteRepository
     {
         return $this->getQuotes()
                     ->filter(function(Quote $quote) use($author) {
-                        return $quote->author()->value() == $author->value();
+                        return mb_strtolower($quote->author()->value()) == mb_strtolower($author->value());
                     })
                     ->take($amount->value());
     }
